@@ -1,0 +1,286 @@
+{
+    "mappings": {
+        "message": {
+            "_all": {
+                "enabled": false
+            },
+            "properties": {
+                "snT": {
+                    "type": "keyword",
+                    "ignore_above": 10922
+                },
+                "mTp": {
+                    "type": "long"
+                },
+                "iBP": {
+                    "type": "boolean"
+                },
+                "mSTp": {
+                    "type": "long"
+                },
+                "sId": {
+                    "type": "long"
+                },
+                "aId": {
+                    "type": "long"
+                },
+                "sTp": {
+                    "type": "keyword",
+                    "ignore_above": 10922
+                },
+                "pL": {
+                    "type": "keyword",
+                    "ignore_above": 10922
+                },
+                "hT": {
+                    "type": "keyword",
+                    "ignore_above": 10922
+                },
+                "iS": {
+                    "type": "boolean"
+                },
+                "enr": {
+                    "properties": {
+                        "fc": {
+                            "properties": {
+                                "dAg": {
+                                    "type": "long"
+                                },
+                                "aC": {
+                                    "type": "long"
+                                },
+                                "pT": {
+                                    "type": "long"
+                                }
+                            }
+                        }
+                    }
+                },
+                "urlEntities": {
+                    "properties": {
+                        "message": {
+                            "properties": {
+                                "displayUrl": {
+                                    "type": "keyword",
+                                    "ignore_above": 10922
+                                },
+                                "expandedUrl": {
+                                    "type": "keyword",
+                                    "ignore_above": 10922
+                                },
+                                "url": {
+                                    "type": "keyword",
+                                    "ignore_above": 10922
+                                },
+                                "title": {
+                                    "type": "text",
+                                    "norms": false
+                                },
+                                "desc": {
+                                    "type": "text",
+                                    "norms": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "mD": {
+                    "type": "object",
+                    "properties": {
+                        "picture": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "type": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "photoText": {
+                            "type": "text"
+                        }
+                    }
+                },
+                "mVadd": {
+                    "type": "object",
+                    "properties": {
+                        "m_x": {
+                            "type": "text",
+                            "norms": false,
+                            "position_increment_gap": 0
+                        },
+                        "m_x_url": {
+                            "type": "text",
+                            "analyzer": "keyword",
+                            "norms": false,
+                            "position_increment_gap": 0
+                        },
+                        "m_url": {
+                            "type": "text",
+                            "analyzer": "keyword",
+                            "norms": false,
+                            "position_increment_gap": 0
+                        },
+                        "t_url": {
+                            "type": "text",
+                            "analyzer": "keyword",
+                            "norms": false,
+                            "position_increment_gap": 0
+                        },
+                        "aUc": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "q_tw": {
+                            "type": "text",
+                            "norms": false,
+                            "position_increment_gap": 0
+                        }
+                    }
+                },
+                "add": {
+                    "type": "object",
+                    "properties": {
+                        "m_en": {
+                            "type": "text",
+                            "norms": false
+                        },
+                        "t_en": {
+                            "type": "text",
+                            "norms": false
+                        },
+                        "rd": {
+                            "type": "text",
+                            "norms": false
+                        },
+                        "source": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "meP": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "edR": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "sourcePageURI": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "lid": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "is_review": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "lng": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "domain": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "td": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "auMiss": {
+                            "type": "keyword",
+                            "ignore_above": 10922,
+                            "doc_values": false
+                        },
+                        "m_t": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "secName": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "secUrl": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "tLink": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "sUrl": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "gsn": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "sPId": {
+                            "type": "keyword",
+                            "ignore_above": 10922,
+                            "doc_values": false
+                        },
+                        "rFU": {
+                            "type": "keyword",
+                            "ignore_above": 10922,
+                            "doc_values": false
+                        },
+                        "productName": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        }
+                    }
+                },
+                "fU": {
+                    "type": "object",
+                    "properties": {
+                        "sN": {
+                            "type": "keyword",
+                            "norms": false,
+                            "ignore_above": 10922
+                        },
+                        "d": {
+                            "type": "text",
+                            "norms": false
+                        },
+                        "pK": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "uI": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        },
+                        "verUser": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        }
+                    }
+                },
+                "mSU": {
+                    "properties": {
+                        "sN": {
+                            "type": "keyword",
+                            "norms": false,
+                            "ignore_above": 10922
+                        },
+                        "uI": {
+                            "type": "keyword",
+                            "ignore_above": 10922
+                        }
+                    }
+                },
+                "aIF": {
+                    "type": "object",
+                    "properties": {
+                        "sId": {
+                            "type": "long"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

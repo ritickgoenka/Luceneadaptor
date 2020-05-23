@@ -1,0 +1,12 @@
+{
+    "snT": "Twitter",
+    "enr": {
+        "fc": {
+            "dAg": 15132
+        }
+    },
+    "mD": {
+        "picture": "thisisakeyword",
+        "photoText": "This text will be tokenized"
+    }
+}
