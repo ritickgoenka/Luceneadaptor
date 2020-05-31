@@ -16,6 +16,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.store.Directory;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -30,7 +31,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
 
-public class Luceneadp{
+public class Luceneadp {
   public static JSONObject jmap; // JSONMapping object
 
 
@@ -68,7 +69,7 @@ public class Luceneadp{
       if(type.equals("text")){
         doc.add(new TextField(field,(String)value,Field.Store.YES));
       }
-      else if(type.equals("keyword")||type.equals("boolean")){
+      else if(type.equals("keyword")){
         doc.add(new StringField(field,(String)value,Field.Store.YES));
       }
       else if(type.equals("long")){
@@ -76,6 +77,10 @@ public class Luceneadp{
       }
       else if(type.equals("int")){
         doc.add(new IntPoint(field,(int)value));
+      }
+      else if(type.equals("boolean")){
+        boolean val=(boolean)(value);
+        doc.add(new StringField(field,(val)?"true":"false",Field.Store.YES));
       }
   }
 
@@ -158,7 +163,7 @@ public class Luceneadp{
         // named "index" at the location where this Luceneadp.java file is present
         // to change the location of folder edit dir object above
         // same location must be used by Index Reader
-        String message_path="/home/ritick/sample.json";
+        String message_path="/home/ritick/message.json";
         String mapping_path="/home/ritick/mapping.json";
         jmap=new JSONObject();
         try (FileReader reader = new FileReader(mapping_path)) {
@@ -175,6 +180,7 @@ public class Luceneadp{
         jmap=getnext(jmap,"mappings");					// create mappings object
     		jmap=getnext(jmap,"message");
         Document doc=addJSON(message_path);
+        // System.out.println("doc")
         writer.addDocument(doc);
         writer.close();
 
@@ -186,17 +192,27 @@ public class Luceneadp{
         // hard coded query testing
         // I'm facing problem in testing test_query1 which has type="keyword", I have added it as StringField
         String test_query0="+mD.photoText:tokenized";
-        String test_query1="+snT:Twitter";
+
         Query query0=parser.parse(test_query0);
-        Query query1=parser.parse(test_query1);
+        Query query1=new TermQuery(new Term("snT","Twitter"));
+        Query query2=new TermQuery(new Term("iBP","false"));
+        Query query3=LongPoint.newExactQuery("mTp",52);
+
+
         TopDocs results0 = searcher.search(query0, 10);
         TopDocs results1 = searcher.search(query1, 10);
+        TopDocs results2 = searcher.search(query2, 10);
+        TopDocs results3 = searcher.search(query3, 10);
 
         int numTotalHits0 = Math.toIntExact(results0.totalHits.value);
         int numTotalHits1 = Math.toIntExact(results1.totalHits.value);
+        int numTotalHits2 = Math.toIntExact(results2.totalHits.value);
+        int numTotalHits3 = Math.toIntExact(results3.totalHits.value);
 
-        System.out.println(numTotalHits0 + " total matching documents for "+test_query0);
-        System.out.println(numTotalHits1 + " total matching documents for "+test_query1);
+        System.out.println(numTotalHits0 + " total matching documents for "+query0);
+        System.out.println(numTotalHits1 + " total matching documents for "+query1);
+        System.out.println(numTotalHits2 + " total matching documents for "+query2);
+        System.out.println(numTotalHits3 + " total matching documents for "+query3);
   }
 
 }

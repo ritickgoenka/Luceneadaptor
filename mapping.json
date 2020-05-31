@@ -5,6 +5,10 @@
                 "enabled": false
             },
             "properties": {
+		"text": {
+                    "type": "text",
+                    "ignore_above": 10922
+                },
                 "snT": {
                     "type": "keyword",
                     "ignore_above": 10922
