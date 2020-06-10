@@ -27,25 +27,29 @@ public class Benchmark{
   public Monitor monitor;
   public Analyzer analyzer;
   public SimpleQueryParser queryparser;
-  public MultiMatchingQueries<QueryMatch> matches;
   public long doc_count = 0;
   public long match_count = 0;
   public long search_time = 0;
 
+
+  // create a new Benchmark object with StandardAnalyzer
   public Benchmark()throws IOException{
     this(new StandardAnalyzer());
   }
 
+  // create a new Benchmark object with Analyzer in the parameter
   public Benchmark( Analyzer analyzer) throws IOException{
     this.analyzer = analyzer;
     this.monitor = new Monitor(this.analyzer);
     this.queryparser = new SimpleQueryParser(this.analyzer,"text");
   }
 
+  // create a new Report of the matches done till now
   public Report getReport()throws IOException{
     return new Report(doc_count,monitor.getQueryCount(),match_count ,search_time);
   }
 
+  // regiter queries located at queryPath
   public void registerQueries(String queryPath)throws Exception{
     List<MonitorQuery> queries = new ArrayList<>();
     try (FileInputStream fis = new FileInputStream(queryPath);
@@ -61,6 +65,12 @@ public class Benchmark{
     this.registerQueries(queries);
   }
 
+  // register all the queries present in list "queries"
+  public void registerQueries(List<MonitorQuery> queries)throws IOException{
+    monitor.register(queries);
+  }
+
+  // match the documents present in the message_path folder in batches
   public void execute(int batch_size,String message_path, String mapping_path)throws Exception{
     File directoryPath = new File(message_path);
     String contents[] = directoryPath.list();
@@ -77,12 +87,9 @@ public class Benchmark{
     }
   }
 
-  public void registerQueries(List<MonitorQuery> queries)throws IOException{
-    monitor.register(queries);
-  }
-
+  // match all the docments present in docs array
   public void execute(Document[] docs) throws IOException{
-    matches = monitor.match(docs,QueryMatch.SIMPLE_MATCHER);
+    MultiMatchingQueries<QueryMatch> matches = monitor.match(docs,QueryMatch.SIMPLE_MATCHER);
     doc_count += matches.getBatchSize();
     for(int i=0;i<matches.getBatchSize();i++){
       match_count+=matches.getMatchCount(i);
